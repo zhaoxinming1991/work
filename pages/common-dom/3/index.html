@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标移入移出</title>
+    <style>
+        .block {
+            width: 200px;
+            height: 200px;
+            background-color: #000;
+            color: #fff;
+            margin: 20px auto;
+            padding: 20px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .newBlock {
+            width: 200px;
+            height: 200px;
+            background-color: #fff;
+            color: #000;
+            border: 10px solid #B61E3D;
+            margin: 20px auto;
+            padding: 20px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var block = document.getElementById('block');
+            block.addEventListener('mouseover', function () {
+                block.childNodes[0].nodeValue = '鼠标移出';
+                block.className = 'newBlock';
+            }, false);
+
+            block.addEventListener('mouseout', function () {
+                block.childNodes[0].nodeValue = '鼠标移入';
+                block.className = 'block';
+            }, false);
+        }
+    </script>
+</head>
+<body>
+    <div id="block" class="block">
+        鼠标移入
+    </div>
+</body>
+</html>
