@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap {
+            width: 50%;
+            margin: 20px auto;
+        }
+        .wrap .skin li{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+        #red {
+            cursor: pointer;
+            background-color: red;
+            margin-right: 10px;
+        }
+        #green {
+            cursor: pointer;
+            background-color: green;
+            margin-right: 10px;
+        }
+        #black {
+            cursor: pointer;
+            background-color: black;
+            margin-right: 10px;
+        }
+        .nav li {
+            display: inline-block;
+            list-style: none;
+            border: 2px solid #ffffff;
+            padding: 5px 20px;
+            color: #fff;
+        }
+        .skin li {
+            text-align: center;
+        }
+
+        .red {
+            background-color: #ff9ea6;
+        }
+        .red .nav li {
+            background-color: #ff3f41;
+        }
+        .green {
+            background-color: #96ff9c;
+        }
+        .green .nav li {
+            background-color: #35ff46;
+        }
+        .black {
+            background-color: #666666;
+        }
+        .black .nav li {
+            background-color: #2b2b2b;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var skin = document.getElementsByClassName('skin');
+            var redBtn = document.getElementById('red');
+            var greenBtn = document.getElementById('green');
+            var blackBtn = document.getElementById('black');
+
+            redBtn.addEventListener('click', function (e) {
+                for (var i = 0; i < skin[0].children.length; i++) {
+                    skin[0].children[i].className = null;
+                }
+                e.target.className = 'current';
+                document.body.className = 'red';
+            }, false);
+
+            greenBtn.addEventListener('click', function (e) {
+                for (var i = 0; i < skin[0].children.length; i++) {
+                    skin[0].children[i].className = null;
+                }
+                e.target.className = 'current';
+                document.body.className = 'green';
+            }, false);
+
+            blackBtn.addEventListener('click', function (e) {
+                for (var i = 0; i < skin[0].children.length; i++) {
+                    skin[0].children[i].className = null;
+                }
+                e.target.className = 'current';
+                document.body.className = 'black';
+            }, false);
+        }
+    </script>
+</head>
+<body class="red">
+    <div class="wrap">
+        <ul class="skin">
+            <li id="red" title="红色"><span></span></li>
+            <li id="green" title="绿色"><span></span></li>
+            <li id="black" title="黑色"><span></span></li>
+        </ul>
+        <ul class="nav">
+            <li>新闻</li>
+            <li>娱乐</li>
+            <li>体育</li>
+            <li>影视</li>
+            <li>音乐</li>
+            <li>花边</li>
+        </ul>
+    </div>
+</body>
+</html>
