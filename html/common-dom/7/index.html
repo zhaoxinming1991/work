@@ -16,10 +16,13 @@
     </style>
     <script>
         window.onload = function () {
-//            console.log(getNow());
             var hour = document.getElementById('hour');
             var min = document.getElementById('minute');
             var sec = document.getElementById('second');
+            var a = getNow();
+            hour.innerHTML = a[0];
+            min.innerHTML = a[1];
+            sec.innerHTML = a[2];
             setInterval(function () {
                 var a = getNow();
                 hour.innerHTML = a[0];
