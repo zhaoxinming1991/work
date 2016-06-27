@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易选项卡</title>
+    <style>
+        .wrap {
+            width: 500px;
+            margin: 0 auto;
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #000;
+            box-sizing: border-box;
+        }
+        #tab {
+            height: 30px;
+        }
+        #tab ul {
+            margin: 0 0;
+            padding: 0 0;
+        }
+        #tab ul li {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+        .current {
+            background-color: #dfdfdf;
+            color: #000;
+        }
+        #content {
+            background-color: #fff;
+            color: #000;
+            margin: 0 0;
+            padding: 0 0;
+        }
+        #content ul {
+            margin: 0 0;
+            font-size: small;
+            padding: 10px 30px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oTab = document.querySelectorAll('#tab ul li');
+            var oList = document.querySelectorAll('#content ul');
+
+            for (var i = 0; i < oTab.length; i++) {
+                oTab[i].addEventListener('mouseover', (function(i){
+                    return function (e) {
+                        console.log(i);
+                        for (var j = 0; j < oTab.length; j++) {
+                            oTab[j].className = null;
+                        }
+                        e.target.className = 'current';
+                        for (var k = 0; k < oList.length; k++) {
+                            oList[k].style.display = 'none';
+                        }
+                        oList[i].style.display = 'block';
+                    }
+                })(i), false);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div id="tab">
+            <ul>
+                <li class="current">第一天</li>
+                <li>第二天</li>
+                <li>第三天</li>
+            </ul>
+        </div>
+        <div id="content">
+            <ul>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+                <li>砍柴</li>
+            </ul>
+            <ul style="display: none">
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+                <li>烧水</li>
+            </ul>
+            <ul style="display: none">
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+                <li>做菜</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
