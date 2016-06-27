@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>评分系统</title>
+    <style>
+        .wrap {
+            width: 360px;
+            margin: 0 auto;
+        }
+        .film {
+            width: 360px;
+            height: 480px;
+            background: url('踏血寻梅.jpg') 0 0 no-repeat;
+            background-size: contain;
+        }
+        span {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+        ul {
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+            display: inline-block;
+            list-style: none;
+            margin: 0;
+        }
+        ul li {
+            float: left;
+            display: inline-block;
+            width: 25px;
+            background: url('star.png') no-repeat;
+            background-size: contain;
+            text-indent: -9999px;
+            cursor: pointer;
+        }
+        ul li a {
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+        #point {
+            margin-left: 10px;
+            color: orangered;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var star = document.getElementsByClassName('star');
+            var score = document.getElementById('point');
+            var point = 0;
+
+            for (var i = 0; i < star.length; i++) {
+                star[i].addEventListener('mouseover', (function (i) {
+                    return function () {
+                        for (var j = 0; j <= i; j++){
+                            star[j].style.backgroundImage = 'url(star1.png)';
+                        }
+                        for (;j < star.length; j++) {
+                            star[j].style.backgroundImage = 'url(star.png)';
+                        }
+                    };
+                })(i), false);
+
+                star[i].addEventListener('click', (function (i) {
+
+                    return function () {
+                        point = i + 1;
+                        for (var j = 0; j <= i; j++){
+                            star[j].style.backgroundImage = 'url(star1.png)';
+                        }
+                        score.innerHTML = point * 2 + '分';
+                        score.style.display = 'inline';
+                    }
+                })(i), false);
+
+                //鼠标离开后恢复上次得分
+                star[i].addEventListener('mouseout', (function () {
+                    return function () {
+                        console.log('mouseout' + point);
+                        for (var k = 0; k < point; k++) {
+                            star[k].style.backgroundImage = 'url(star1.png)';
+                        }
+                        for (; k < star.length; k++) {
+                            star[k].style.backgroundImage = 'url(star.png)';
+                        }
+                    }
+                })(), false);
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="film"></div>
+        <span>电影评分:</span>
+        <ul>
+            <li class="star"><a href="#">1</a></li>
+            <li class="star"><a href="#">2</a></li>
+            <li class="star"><a href="#">3</a></li>
+            <li class="star"><a href="#">4</a></li>
+            <li class="star"><a href="#">5</a></li>
+        </ul>
+        <span id="point" style="display: none;"></span>
+    </div>
+</body>
+</html>
