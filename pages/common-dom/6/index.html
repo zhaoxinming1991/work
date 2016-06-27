@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>播放列表收缩展开</title>
+    <style>
+        .wrap {
+            border: 2px solid black;
+            width: 400px;
+            margin: 0 auto;
+        }
+        #menu {
+            border-bottom: 2px solid black;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+            padding-left: 10px;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+        #menu img {
+            width: 30px;
+            height: 30px;
+            float: right;
+        }
+        ul {
+            list-style: decimal;
+        }
+        li {
+            height: 20px;
+            line-height: 20px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        li:hover {
+            background-color: #b3b3b3;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var menu = document.getElementById('menu');
+            var list = document.getElementsByTagName('ul')[0];
+            var btn = menu.getElementsByTagName('img')[0];
+            menu.addEventListener('click', function () {
+
+                if (list.style.display == 'none') {
+                    list.style.display = 'block';
+                    btn.src = 'up.png';
+                    btn.alt = 'up';
+                } else {
+                    list.style.display = 'none';
+                    btn.src = 'down.png';
+                    btn.alt = 'down';
+                }
+
+            }, false);
+        }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div id="menu">播放列表
+            <img src="up.png" alt="up">
+        </div>
+        <ul style="display: block;">
+            <li>Lovin' You - Marcela</li>
+            <li>unravel - TK</li>
+            <li>Shoop - Salt-N-Pepa</li>
+            <li>Lost Stars - Adam Levine</li>
+            <li>See you again - Wiz</li>
+            <li>虎口脱险  - 老狼</li>
+        </ul>
+    </div>
+</body>
+</html>
