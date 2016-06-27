@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>当前输入框高亮</title>
+    <style>
+        form {
+            border: 2px solid salmon;
+            width: 300px;
+            margin: 0 auto;
+            padding: 0 0 10px 0;
+        }
+        form h2 {
+            margin: 0 0 15px 0;
+            padding-left: 10px;
+            border-bottom: 2px solid salmon;
+            font-size: 20px;
+            background-color: salmon;
+            color: #fff;
+        }
+        form div {
+            margin-bottom: 5px;
+        }
+        form label {
+            width: 80px;
+            height: 20px;
+            line-height: 20px;
+            vertical-align: middle;
+            float: left;
+            text-align: right;
+            margin-right: 20px;
+
+        }
+        form input {
+            height: 20px;
+            line-height: 20px;
+        }
+        form input[type="submit"] {
+            background-color: salmon;
+            border: 0;
+            width: 60px;
+            height: 25px;
+            font-size: 15px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var input = document.getElementsByTagName('input');
+            for (var i = 0; i < input.length - 1; i++) {
+                input[i].addEventListener('focus', function (ev) {
+                    ev.target.style.backgroundColor = 'salmon';
+                    ev.target.style.color = 'white';
+                }, false);
+                input[i].addEventListener('blur', function (ev) {
+                    ev.target.style.backgroundColor = '';
+                }, false);
+            }
+        };
+    </script>
+</head>
+<body>
+<form action="#">
+    <h2>用户登陆</h2>
+    <div>
+        <label for="user">用户名:</label>
+        <input type="text" id="user">
+    </div>
+    <div>
+        <label for="pwd">密码:</label>
+        <input type="password" id="pwd">
+    </div>
+    <div>
+        <label></label>
+        <input type="submit" value="登陆">
+    </div>
+</form>
+</body>
+</html>
