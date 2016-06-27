@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易时钟</title>
+    <style>
+        .wrap {
+            text-align: center;
+            width: 100px;
+            background-color: #000;
+            color: #fff;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+//            console.log(getNow());
+            var hour = document.getElementById('hour');
+            var min = document.getElementById('minute');
+            var sec = document.getElementById('second');
+            setInterval(function () {
+                var a = getNow();
+                hour.innerHTML = a[0];
+                min.innerHTML = a[1];
+                sec.innerHTML = a[2];
+            }, 1000);
+            function getNow(){
+                var now = new Date();
+                var time = [];
+                time.push(format(now.getHours()));
+                time.push(format(now.getMinutes()));
+                time.push(format(now.getSeconds()));
+                return time;
+            }
+            function format(p){
+                if (p < 10) {
+                    console.log('0'+p);
+                    return '0' + p;
+                } else {
+                    return p;
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <span id="hour">10</span>
+        <span>:</span>
+        <span id="minute">11</span>
+        <span>:</span>
+        <span id="second">5</span>
+    </div>
+</body>
+</html>
