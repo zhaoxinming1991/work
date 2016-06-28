@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>140个字</title>
+    <style>
+        .wrap {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #weibo {
+            width: 300px;
+            height: 200px;
+            resize: none;
+            border-radius: 5px;
+            border: 2px solid #646464;
+            box-shadow: inset;
+            font-size: 20px;
+            padding: 5px;
+        }
+        #last {
+            letter-spacing: 3px;
+        }
+        #last span {
+            font-style: italic;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form class="wrap">
+    <textarea name="weibo" id="weibo" maxlength="140" cols="47" rows="10"  placeholder="说点什么"></textarea>
+    <div id="last">还可以输入<span id="letter">140</span>字</div>
+</form>
+<script>
+    var txt = document.getElementById('weibo');
+    var letter = document.getElementById('letter');
+    txt.addEventListener('input', function (e) {
+        if (140 - e.target.value.length < 0) {
+//            alert('超出140个字了哦');
+        } else {
+            letter.childNodes[0].nodeValue = (140 - e.target.value.length);
+        }
+    }, false);
+
+</script>
+</body>
+</html>
