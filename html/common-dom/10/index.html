@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>光标键控制方块</title>
+    <style>
+        h2 {
+            color: #FF0000;
+        }
+        #block {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var block = document.getElementById('block');
+            document.addEventListener('keydown', function (ev) {
+                var key = ev.keyCode;
+                var top = parseInt(block.style.top);
+                console.log(top);
+                var left = parseInt(block.style.left);
+                console.log(left);
+                switch (key) {
+                    case 37:
+                        block.style.left = (left - 50) + 'px';
+                        break;
+                    case 38:
+                        block.style.top = (top - 50) + 'px';
+                        break;
+                    case 39:
+                        block.style.left = (left + 50) + 'px';
+                        break;
+                    case 40:
+                        block.style.top = (top + 50) + 'px';
+                        break;
+                    default:
+//                            alert('请使用光标键');
+                        break;
+                }
+
+            }, false);
+        };
+
+    </script>
+</head>
+<body>
+    <h2>请用光标键控制方块</h2>
+    <div id="block" style="left: 300px;top: 300px;"></div>
+</body>
+</html>
