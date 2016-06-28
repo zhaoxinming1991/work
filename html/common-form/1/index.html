@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去除字符串左右空格</title>
+    <style>
+        .wrap {
+            width: 400px;
+            margin: 100px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <input type="text" id="input" value="  去除 [ 空格 ]  ">
+        <button id="btn">过滤</button>
+    </div>
+    <script>
+        (function () {
+            var input = document.getElementById('input');
+            var btn = document.getElementById('btn');
+            btn.onclick = function () {
+                input.value = input.value.replace(/^\s+/,'');
+                input.value = input.value.replace(/\s+$/,'');
+            };
+        })();
+    </script>
+</body>
+</html>
