@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品浏览大图</title>
+    <style>
+        .wrap {
+            width: 80%;
+            height: 150px;
+            margin: 0 auto;
+        }
+        ul {
+            list-style: none;
+            text-align: center;
+        }
+        ul li {
+            width: 120px;
+            height: 120px;
+            margin: 0 25px;
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #b3b3b3;
+            padding: 10px;
+        }
+        ul li:hover {
+            border: 1px solid firebrick;
+        }
+        ul li img {
+            width: 120px;
+            height: 120px;
+        }
+        #big {
+            width: 300px;
+            height: 300px;
+            border: 2px solid #b3b3b3;
+            padding: 10px;
+            background-color: #fff;
+            z-index: 999;
+        }
+        #big img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var smImg = document.getElementsByTagName('li');
+            var bgImg = document.querySelector('#big img');
+
+            for (var i = 0; i < smImg.length; i++) {
+                smImg[i].addEventListener('mouseover', (function (i) {
+                    return function (ev) {
+                        bgImg.src = smImg[i].childNodes[0].src;
+                        bgImg.parentNode.style.display = 'block';
+                        bgImg.parentNode.style.position = 'absolute';
+                        bgImg.parentNode.style.left = ev.clientX + 20 + 'px';
+                        bgImg.parentNode.style.top = ev.clientY + 20 + 'px';
+                    };
+                })(i), false);
+
+                smImg[i].addEventListener('mousemove', (function () {
+                    return function (ev) {
+                        if (ev.clientX + 320 > document.documentElement.offsetWidth) {
+                            bgImg.parentNode.style.left = ev.clientX - 320 + 'px';
+                        } else {
+                            bgImg.parentNode.style.left = ev.clientX + 20 + 'px';
+                        }
+                        console.log(document.documentElement.offsetWidth);
+
+                        console.log(ev.clientX + 320);
+                        bgImg.parentNode.style.top = ev.clientY + 20 + 'px';
+                    }
+                })(), false);
+
+                smImg[i].addEventListener('mouseout', function () {
+                    bgImg.parentNode.style.display = 'none';
+                }, false);
+            }
+
+
+        };
+
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <ul>
+            <li><img src="1.jpg" alt="1"></li>
+            <li><img src="2.jpg" alt="2"></li>
+            <li><img src="3.jpg" alt="3"></li>
+            <li><img src="4.jpg" alt="4"></li>
+            <li><img src="5.jpg" alt="5"></li>
+        </ul>
+    </div>
+    <div id="big" style="display: none;">
+        <img src="#" alt="#">
+    </div>
+</body>
+</html>
