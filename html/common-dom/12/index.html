@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格的添加和删除</title>
+    <style>
+        .wrap {
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .table {
+            width: 80%;
+            margin: 20px auto;
+            padding: 5px;
+            border: 2px solid dodgerblue;
+            border-collapse: collapse;
+        }
+        .table td, th {
+            border: 2px solid dodgerblue;
+            padding: 5px;
+        }
+        a {
+            text-decoration: none;
+            color: #3b8fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="add">
+            <input type="text" id="col1" placeholder="第一列">
+            <input type="text" id="col2" placeholder="第二列">
+            <button id="add">添加</button>
+        </div>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>表头一</th>
+                <th>表头二</th>
+                <th>表头三</th>
+            </tr>
+            <tr>
+                <td>行一列一</td>
+                <td>行一列二</td>
+                <td><a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td>行二列一</td>
+                <td>行二列二</td>
+                <td><a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td>行三列一</td>
+                <td>行三列二</td>
+                <td><a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td>行四列一</td>
+                <td>行四列二</td>
+                <td><a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td>行五列一</td>
+                <td>行五列二</td>
+                <td><a href="#">删除</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<script>
+    var table = document.getElementsByTagName('tbody')[0];
+    var del = document.querySelectorAll('.table tr td a');
+    var in_1 = document.getElementById('col1');
+    in_1.focus();
+    var in_2 = document.getElementById('col2');
+    var addBtn = document.getElementById('add');
+
+    addBtn.addEventListener('click', function () {
+        var row = document.createElement('tr');
+        table.appendChild(row);
+        var col1 = document.createElement('td');
+        col1.appendChild(document.createTextNode(in_1.value));
+        row.appendChild(col1);
+        var col2 = document.createElement('td');
+        col2.appendChild(document.createTextNode(in_2.value));
+        row.appendChild(col2);
+        var col3 = document.createElement('td');
+        row.appendChild(col3);
+        var del = document.createElement('a');
+        del.href = '#';
+        del.appendChild(document.createTextNode('删除'));
+        col3.appendChild(del);
+        in_1.focus();
+        del.onclick = function (ev) {
+            ev.target.parentNode.parentNode.parentNode.removeChild(ev.target.parentNode.parentNode);
+        }
+    }, false);
+
+
+
+    //del
+    for (var i = 0; i < del.length; i++) {
+        del[i].addEventListener('click', function (ev) {
+            ev.target.parentNode.parentNode.parentNode.removeChild(ev.target.parentNode.parentNode);
+        }, false);
+    }
+</script>
+</body>
+</html>
