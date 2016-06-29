@@ -39,6 +39,7 @@ header, section, footer {
 a {
   color: #069;
   text-decoration: none;
+  position: relative;
 }
 
 p {
@@ -358,4 +359,12 @@ footer p + p {
   header p.view a small:before {
     content: 'at https://github.com/';
   }
+}
+
+.import:before {
+    content: "*";
+    color: #ff4861;
+    position: absolute;
+    left: -10px;
+    font-size: 20px;
 }

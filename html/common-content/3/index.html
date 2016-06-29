@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标悬停效果</title>
+    <style>
+        .wrap {
+            width: 350px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        ol {
+            color: #2a6496;
+        }
+        li {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            list-style: decimal inside;
+            width: 320px;
+            margin: 3px 0;
+        }
+        a {
+            text-decoration: none;
+            font-size: 20px;
+            color: #3b8fff;
+
+        }
+        #title {
+            position: absolute;
+            background-color: #000;
+            border-radius: 5px;
+            opacity: 0.7;
+            padding: 3px;
+            color: #fff;
+            box-shadow: 0 3px 3px #333333;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <ol class="list">
+            <li><a href="javascript:void(0);" title="铁路部门：火车票丢失需“先补买再退款”">铁路部门：火车票丢失需“先补买再退款”</a></li>
+            <li><a href="javascript:void(0);" title="新修订新疆宗教事务条例施行 禁止宣扬极端思想">新修订新疆宗教事务条例施行 禁止宣扬极端思想</a></li>
+            <li><a href="javascript:void(0);" title="长征火箭从天而降瞬间被拍下 民众围观(图)">长征火箭从天而降瞬间被拍下 民众围观(图)</a></li>
+            <li><a href="javascript:void(0);" title="呼格父母:今后不再上访 打算先给儿子买个好墓地">呼格父母:今后不再上访 打算先给儿子买个好墓地</a></li>
+            <li><a href="javascript:void(0);" title="中国驻印尼使馆:印尼未对持普通护照中方人员免签">中国驻印尼使馆:印尼未对持普通护照中方人员免签</a></li>
+            <li><a href="javascript:void(0);" title="陕西圈养大熊猫发生犬瘟热  一8岁大熊猫死亡">陕西圈养大熊猫发生犬瘟热  一8岁大熊猫死亡</a></li>
+        </ol>
+    </div>
+<script>
+    var t = document.querySelectorAll('.list li a');
+    var titleValue = null;
+    for (var i = 0; i < t.length; i++) {
+        t[i].addEventListener('mouseover', function (ev) {
+            titleValue = ev.target.title;
+            ev.target.title = '';
+            var title = document.createElement('div');
+            title.id = 'title';
+            title.appendChild(document.createTextNode(titleValue));
+            document.body.appendChild(title);
+
+        }, false);
+
+        t[i].addEventListener('mousemove', function (ev) {
+            title.style.left = ev.clientX + 10 + 'px';
+            title.style.top = ev.clientY + 10 + 'px';
+        }, false);
+
+        t[i].addEventListener('mouseout', function (ev) {
+            document.getElementById('title').parentNode.removeChild(document.getElementById('title'));
+            ev.target.title = titleValue;
+        }, false);
+    }
+</script>
+</body>
+</html>
