@@ -4,12 +4,66 @@
     <meta charset="UTF-8">
     <title>仿腾讯视频评论展开/收起</title>
     <style>
-
+        body,html {
+            font: 14px/1.5 hiragino sans gb,microsoft yahei,simsun;
+            padding: 0;
+            margin: 0;
+        }
+        .wrap {
+            width: 60%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        .wrap p {
+            word-break: break-all;
+            display: inline-block;
+        }
+        .wrap p a {
+            color: #b3b3b3;
+            text-decoration: none;
+        }
+        i {
+            background-repeat: no-repeat;
+            background-image: url('down.png');
+            background-size: contain;
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
+    <div class="wrap">
+        <p class="item-content">
+            一部5分侦探片，5分的说教片，5分的硬汉片三者加一起，回叙倒叙多线索慢节奏各种语无伦次的BB叨，确实要有非凡的耐心才能看完。一口气看完8集，最后才搞懂导演想说什么，我想应该是原谅二字；男一号在我看到就是崩溃，混乱，反社会边缘挣扎的一个人，像他自己说的，正是这些特质让他能很好适应警察这份工作，从他审讯技巧很高超可以看出，对象基本都是极端变态（什么杀自己的孩子，抢劫不成连杀两人）而他却能代入这些罪犯的心理瓦解对方，更绝的是得...
+            <a href="javascript:void(0)" class="show-btn hide" title>&nbsp;展开
+                <i></i>
+            </a>
+        </p>
+        <p class="item-fullcontent" style="display: none">
+            一部5分侦探片，5分的说教片，5分的硬汉片三者加一起，回叙倒叙多线索慢节奏各种语无伦次的BB叨，确实要有非凡的耐心才能看完。一口气看完8集，最后才搞懂导演想说什么，我想应该是原谅二字；男一号在我看到就是崩溃，混乱，反社会边缘挣扎的一个人，像他自己说的，正是这些特质让他能很好适应警察这份工作，从他审讯技巧很高超可以看出，对象基本都是极端变态（什么杀自己的孩子，抢劫不成连杀两人）而他却能代入这些罪犯的心理瓦解对方，更绝的是得到口供后再把对方推入深渊。没有宽恕这种事存在，最后死过一回才发现爱一直环绕着他，原谅了父亲（估计从小就掐架）原谅了自己（因为女儿的夭折妻子的离开导致人格分裂），男主一直都给人很阴霾的感觉，只有到最后才感到豁然开朗的感觉，这片说不出哪里具体好，但确实值得一看，就像很多简单的食材经过大师一料理，就成了美食，好演员，好导演.
+            <a href="javascript:void(0)" class="show-btn show" title>&nbsp;收起
+                <i></i>
+            </a>
+        </p>
+    </div>
 
 <script>
+    var hide = document.getElementsByClassName('show-btn');
+    for (var i = 0; i < hide.length; i++) {
+        hide[i].addEventListener('click', function (ev) {
+            if (ev.target.className.indexOf('hide') > -1) {
+                ev.target.parentNode.nextSibling.nextSibling.style.display = 'block';
+                console.log(ev.target.childNodes[1].style.backgroundImage);
+                ev.target.childNodes[1].style.backgroundImage = "url('down.png')";
+            } else {
+                ev.target.parentNode.previousSibling.previousSibling.style.display = 'block';
+                ev.target.childNodes[1].style.backgroundImage = "url('up.png')";
+            }
+            ev.target.parentNode.style.display = 'none';
+        }, true);
+    }
 
 </script>
 </body>
