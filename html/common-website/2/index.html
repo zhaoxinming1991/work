@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>仿淘宝密码找回滑块验证码</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .wrap {
+            width: 400px;
+            margin: 300px auto;
+            height: 32px;
+            line-height: 32px;
+            vertical-align: middle;
+        }
+        label {
+            font-size: 14px;
+            height: 26px;
+            color: #9fa1a1;
+        }
+        #check {
+            display: inline-block;
+            width: 300px;
+            height: 32px;
+            background-color: #d7d9d9;
+            text-align: center;
+            font-size: 10px;
+            position: absolute;
+            margin: 0 10px;
+
+        }
+        #block {
+            width: 40px;
+            height: 32px;
+            border: 1px solid #ccc;
+            display: block;
+            position: absolute;
+            background: url("right.png");
+            background-size: contain;
+            cursor: move;
+            z-index: 999;
+        }
+        #green {
+            width: 0;
+            height: 32px;
+            display: block;
+            position: absolute;
+            background-color: #7CBF46;
+            z-index: 9;
+
+        }
+        span {
+            position: relative;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <label for="check">验证:</label>
+        <div id="check">
+            <div id="green"></div>
+            <div id="block"></div>
+            <span>请按住划块,拖动到最右边</span>
+        </div>
+    </div>
+<script>
+    var block = document.getElementById('block');
+    var check = document.getElementById('check');
+    var green = document.getElementById('green');
+    var listen;
+
+    block.addEventListener('mousedown', (function () {
+        listen = function (ev) {
+            block.drag = true;
+            block.l = ev.clientX;
+        };
+        return listen
+    })(), false);
+
+    document.addEventListener('mousemove', function (ev) {
+        if (!block.drag) return false;
+        if (ev.clientX - block.l <= 0) {
+            block.style.left = 0 + 'px';
+        } else if (ev.clientX - block.l >= 260) {
+            block.style.left = 260 + 'px';
+            block.style.backgroundImage = 'url("finish.png")';
+            block.removeEventListener('mousedown', listen, false);
+        } else {
+            block.style.left = ev.clientX - block.l + 'px';
+        }
+        green.style.width = block.style.left;
+    }, false);
+
+    document.addEventListener('mouseup', function () {
+        if (block.style.left !== '260px') {
+            block.style.left = 0;
+            green.style.width = 0;
+        }
+        block.drag = false;
+    }, false);
+
+</script>
+</body>
+</html>
