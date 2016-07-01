@@ -2,9 +2,264 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>仿网易云音乐图片轮播</title>
-</head>
-<body>
+    <title>图片轮播</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
+        .wrap {
+            width: 1190px;
+            height: 270px;
+            position: relative;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .unit {
+            position: absolute;
+            width: 530px;
+            height: 100px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav div {
+            width: 46px;
+            height: 46px;
+            position: absolute;
+            top: 50%;
+            margin-top: -23px;
+            cursor: pointer;
+        }
+
+        #right {
+            background: url("rt.png");
+            right: 7px;
+            z-index: 2;
+        }
+
+        #left {
+            background: url("lt.png");
+            left: 7px;
+            z-index: 2;
+        }
+
+        .lt {
+            width: 530px;
+            height: 224px;
+            top: 23px;
+            opacity: 1;
+        }
+
+        .mid {
+            width: 640px;
+            height: 270px;
+            z-index: 999;
+        }
+
+        .lt .overlay {
+            background-color: #000;
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.4;
+        }
+
+    </style>
+</head>
+
+<body>
+<h1 style="color: #ff6c64;">图片太大了...请在图片加载完成后使用</h1>
+<h1 style="color: #ff6c64;">暂时还没有动画效果...</h1>
+<div class="wrap">
+    <div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="1.png" alt="1"></a>
+            <span class="overlay"></span>
+        </div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="2.jpg" alt="2"></a>
+            <span class="overlay"></span>
+        </div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="3.jpg" alt="3"></a>
+            <span class="overlay"></span>
+        </div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="4.jpg" alt="4"></a>
+            <span class="overlay"></span></div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="5.jpg" alt="5"></a>
+            <span class="overlay"></span>
+        </div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="6.jpg" alt="6"></a>
+            <span class="overlay"></span>
+        </div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="7.png" alt="7"></a>
+            <span class="overlay"></span>
+        </div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="8.jpg" alt="8"></a>
+            <span class="overlay"></span>
+        </div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="9.jpg" alt="9"></a>
+            <span class="overlay"></span>
+        </div>
+        <div class="unit">
+            <a href="javascript:void(0)"><img src="10.png" alt="10"></a>
+            <span class="overlay"></span>
+        </div>
+    </div>
+    <div class="nav">
+        <div id="left"></div>
+        <div id="right"></div>
+    </div>
+    <ul class="list">
+        <div></div>
+    </ul>
+</div>
+<script>
+    var unit = document.getElementsByClassName('unit');
+    var lt = document.getElementById('left');
+    var rt = document.getElementById('right');
+    //初始化图片位置
+    (function () {
+        unit[0].className = 'unit lt';
+        unit[0].style.left = '0px';
+        unit[1].className = 'unit mid';
+        unit[1].style.left = '275px';
+        unit[2].className = 'unit lt';
+        unit[2].style.left = '660px';
+
+        for (var i = 3; i < unit.length - 1; i++) {
+            unit[i].style.left = 1190 + 530 * (i - 3) + 'px';
+        }
+        unit[unit.length - 1].style.left = '-530px';
+    })();
+
+    var listener = function () {
+        for (var i = 0; i < unit.length; i++) {
+            //中间的图片
+            if (unit[i].style.left == '275px') {
+                unit[i].getElementsByClassName('overlay')[0].style.opacity = '0.4';
+                unit[i].className = 'unit lt';
+                unit[i].style.left = '0px';
+                //左边的图片
+            } else if (unit[i].style.left == '0px') {
+                unit[i].className = 'unit';
+                unit[i].style.left = '-530px';
+                //右边的图片
+            } else if (unit[i].style.left == '660px') {
+                unit[i].className = 'unit mid';
+                unit[i].style.left = '275px';
+                //左外的图片
+            } else if (unit[i].style.left == '-530px') {
+                unit[i].className = 'unit';
+                unit[i].style.left = parseInt(unit[i].style.left) - 530 + 'px';
+                //右外的图片
+            } else if (unit[i].style.left == '1190px') {
+                unit[i].className = 'unit lt';
+                unit[i].style.left = parseInt(unit[i].style.left) - 530 + 'px';
+            } else if (unit[i].style.left == '-3180px'){
+                unit[i].style.left = '1190px';
+            } else {
+                unit[i].style.left = parseInt(unit[i].style.left) - 530 + 'px';
+            }
+        }
+    };
+
+    var auto = setInterval(listener, 5000);
+
+
+    //向右的按钮
+    rt.addEventListener('click', function () {
+        for (var i = 0; i < unit.length; i++) {
+            //中间的图片
+            if (unit[i].style.left == '275px') {
+                unit[i].getElementsByClassName('overlay')[0].style.opacity = '0.4';
+                unit[i].className = 'unit lt';
+                unit[i].style.left = '0px';
+                //左边的图片
+            } else if (unit[i].style.left == '0px') {
+                unit[i].className = 'unit';
+                unit[i].style.left = '-530px';
+                //右边的图片
+            } else if (unit[i].style.left == '660px') {
+                unit[i].className = 'unit mid';
+                unit[i].style.left = '275px';
+                //左外的图片
+            } else if (unit[i].style.left == '-530px') {
+                unit[i].className = 'unit';
+                unit[i].style.left = parseInt(unit[i].style.left) - 530 + 'px';
+                //右外的图片
+            } else if (unit[i].style.left == '1190px') {
+                unit[i].className = 'unit lt';
+                unit[i].style.left = parseInt(unit[i].style.left) - 530 + 'px';
+            } else if (unit[i].style.left == '-3180px'){
+                unit[i].style.left = '1190px';
+            } else {
+                unit[i].style.left = parseInt(unit[i].style.left) - 530 + 'px';
+            }
+        }
+    }, false);
+    rt.onmousedown = function () {
+        clearInterval(auto);
+    };
+    rt.onmouseup = function () {
+        auto = setInterval(listener, 5000);
+    };
+
+    lt.addEventListener('click', function () {
+        for (var i = 0; i < unit.length; i++) {
+            //中间的图片
+            if (unit[i].style.left == '275px') {
+                unit[i].className = 'unit lt';
+                unit[i].style.left = '660px';
+                //左边的图片
+            } else if (unit[i].style.left == '0px') {
+                unit[i].className = 'unit mid';
+                unit[i].style.left = '275px';
+                //右边的图片
+            } else if (unit[i].style.left == '660px') {
+                unit[i].className = 'unit';
+                unit[i].style.left = '1190px';
+                //左外的图片
+            } else if (unit[i].style.left == '-530px') {
+                unit[i].className = 'unit lt';
+                unit[i].style.left = parseInt(unit[i].style.left) + 530 + 'px';
+                //右外的图片
+            } else if (unit[i].style.left == '1190px') {
+                unit[i].className = 'unit';
+                unit[i].style.left = parseInt(unit[i].style.left) + 530 + 'px';
+            } else if (unit[i].style.left == '3840px'){
+                unit[i].style.left = '-530px';
+            } else {
+                unit[i].style.left = parseInt(unit[i].style.left) + 530 + 'px';
+            }
+        }
+    }, false);
+    lt.onmousedown = function () {
+        clearInterval(auto);
+    };
+    lt.onmouseup = function () {
+        auto = setInterval(listener, 5000);
+    };
+
+</script>
 </body>
 </html>
